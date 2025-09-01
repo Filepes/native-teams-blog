@@ -18,4 +18,24 @@ export const SearchSection = styled.div`
   gap: 10px;
   margin-top: 205px;
   margin-left: 52px;
+  margin-bottom: 150px;
+`;
+
+export const CategorySection = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 60px;
+  padding: 0 120px;
+  gap: 9px;
+`;
+
+export const LatestPostSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 40px 0;
 `;

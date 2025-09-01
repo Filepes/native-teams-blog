@@ -12,8 +12,8 @@ export const newsApi = {
     api.get('/everything', {
       params: {
         q: 'apple',
-        page: 10,
-        pageSize: 10,
+        page: 1,
+        pageSize: 100,
       },
     }),
 };

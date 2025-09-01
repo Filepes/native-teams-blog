@@ -22,7 +22,7 @@ export const useGetAllNews = (): UseGetAllNewsReturn => {
       setNews(response.data.articles || []);
       setLoading(false);
     } catch (e: unknown) {
-      setError('Cannot fetch articles');
+      setError('Cannot fetch news');
       setNews([]);
       setLoading(false);
     }

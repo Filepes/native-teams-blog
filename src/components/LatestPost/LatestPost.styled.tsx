@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const ResultsSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1200px;
-  padding: 40px 0;
-`;
-
 export const ResultsHeader = styled.div`
   display: flex;
   flex-direction: column;
