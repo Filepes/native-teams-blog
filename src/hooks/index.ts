@@ -1,0 +1,1 @@
+export { useGetAllNews } from './useGetAllNews';
