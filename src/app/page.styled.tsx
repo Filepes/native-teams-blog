@@ -39,3 +39,11 @@ export const LatestPostSection = styled.section`
   width: 100%;
   padding: 40px 0;
 `;
+
+export const AllPostsSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1197px;
+  padding: 40px 0;
+`;

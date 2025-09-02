@@ -16,4 +16,12 @@ export const newsApi = {
         pageSize: 100,
       },
     }),
+  getPaginatedNews: (page: number, pageSize: number) =>
+    api.get('/everything', {
+      params: {
+        q: 'apple',
+        page,
+        pageSize,
+      },
+    }),
 };

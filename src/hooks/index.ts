@@ -1,1 +1,2 @@
-export { useGetAllNews } from './useGetAllNews';
+export * from './useGetAllNews';
+export * from './useGetPaginatedNews';

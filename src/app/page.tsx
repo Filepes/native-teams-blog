@@ -5,9 +5,11 @@ import {
   SearchSection,
   CategorySection,
   LatestPostSection,
+  AllPostsSection,
 } from './page.styled';
 import { CategoriesList } from '@/components/CategoriesList';
 import { LatestPost } from '@/components/LatestPost';
+import { AllPosts } from '@/components/AllPosts';
 
 export default function Home() {
   return (
@@ -21,6 +23,9 @@ export default function Home() {
       <LatestPostSection>
         <LatestPost />
       </LatestPostSection>
+      <AllPostsSection>
+        <AllPosts />
+      </AllPostsSection>
     </Container>
   );
 }
