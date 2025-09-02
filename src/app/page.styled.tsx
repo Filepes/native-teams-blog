@@ -53,5 +53,11 @@ export const InfoSection = styled.section`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 60px 0;
+`;
+
+export const NewsletterSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 `;

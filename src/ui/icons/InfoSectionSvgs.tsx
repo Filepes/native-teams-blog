@@ -1,5 +1,7 @@
 interface SvgProps {
   color?: string;
+  width?: string;
+  height?: string;
 }
 
 export const InfoSectionBodySvg = ({ color = '#5152FB' }: SvgProps) => (
@@ -32,10 +34,14 @@ export const InfoSectionHeadSvg = ({ color = '#5152FB' }: SvgProps) => (
   </svg>
 );
 
-export const InfoSectionStarSvg = ({ color = '#8D95FF' }: SvgProps) => (
+export const InfoSectionStarSvg = ({
+  color = '#8D95FF',
+  width = '64',
+  height = '64',
+}: SvgProps) => (
   <svg
-    width="64"
-    height="64"
+    width={width}
+    height={height}
     viewBox="0 0 64 64"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

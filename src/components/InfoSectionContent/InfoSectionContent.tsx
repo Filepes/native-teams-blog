@@ -15,7 +15,7 @@ import {
   InfoSectionBodySvg,
   InfoSectionHeadSvg,
   InfoSectionStarSvg,
-} from '../icons/InfoSectionSvgs';
+} from '@/ui/icons/InfoSectionSvgs';
 
 interface InfoSectionContentProps {
   backgroundColor?: string;

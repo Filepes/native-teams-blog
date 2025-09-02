@@ -7,11 +7,13 @@ import {
   LatestPostSection,
   AllPostsSection,
   InfoSection,
+  NewsletterSection,
 } from './page.styled';
 import { CategoriesList } from '@/components/CategoriesList';
 import { LatestPost } from '@/components/LatestPost';
 import { AllPosts } from '@/components/AllPosts';
 import { InfoSectionContent } from '@/components/InfoSectionContent';
+import { NewsletterSectionContent } from '@/components/NewsletterSectionContent';
 
 export default function Home() {
   return (
@@ -31,6 +33,9 @@ export default function Home() {
       <InfoSection>
         <InfoSectionContent />
       </InfoSection>
+      <NewsletterSection>
+        <NewsletterSectionContent />
+      </NewsletterSection>
     </Container>
   );
 }
