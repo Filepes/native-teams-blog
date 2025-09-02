@@ -47,3 +47,11 @@ export const AllPostsSection = styled.section`
   width: 1197px;
   padding: 40px 0;
 `;
+
+export const InfoSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 60px 0;
+`;
