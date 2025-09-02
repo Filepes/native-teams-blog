@@ -30,7 +30,6 @@ export const CategoryItem = styled.button`
   border: 1px solid #e0e0e0;
   background-color: #f0f2f7;
   color: #838a90;
-  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.3;

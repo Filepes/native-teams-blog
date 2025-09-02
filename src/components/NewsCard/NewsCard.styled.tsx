@@ -6,6 +6,7 @@ export const PostCard = styled.div`
   flex-direction: row;
   background: white;
   border: 1px solid #e0e0e0;
+  background-color: #ebf3ff;
   border-radius: 20px;
   padding: 80px 100px;
   margin-bottom: 20px;
@@ -13,10 +14,6 @@ export const PostCard = styled.div`
   height: 560px;
   gap: 100px;
   align-items: center;
-
-  &:hover {
-    border-color: #5152fb;
-  }
 `;
 
 export const PostImageWrapper = styled.div`

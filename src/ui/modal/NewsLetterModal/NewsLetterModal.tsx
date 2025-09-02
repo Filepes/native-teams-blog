@@ -7,7 +7,7 @@ import {
   ModalTitle,
   ModalDescription,
 } from './NewsLetterModal.styled';
-import { NewsLetterSuccessSvg } from '../../icons/NewsLetterSuccessSvgs';
+import { NativeTeamsLogo } from '@/ui/icons/NativeTeamsLogoSvg';
 
 interface NewsLetterSuccessModalProps {
   isOpen: boolean;
@@ -37,7 +37,7 @@ export const NewsLetterSuccessModal = ({
           X
         </CloseButton>
         <ModalIconWrapper>
-          <NewsLetterSuccessSvg />
+          <NativeTeamsLogo />
         </ModalIconWrapper>
         <ModalTitle>{title}</ModalTitle>
         <ModalDescription>{description}</ModalDescription>

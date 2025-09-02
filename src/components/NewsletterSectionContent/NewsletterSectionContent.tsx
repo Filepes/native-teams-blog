@@ -13,17 +13,14 @@ import {
   NewsLetterTitleColor,
   NewsLetterContainer,
 } from './NewsletterSection.styled';
-import { InfoSectionStarSvg } from '@/ui/icons/InfoSectionSvgs';
 import { NewsLetterSuccessModal } from '@/ui/modal/NewsLetterModal';
+import { StarSvg } from '@/ui/icons/StarSvg';
 
 export const NewsletterSectionContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     setIsModalOpen(true);
-    e.currentTarget.reset();
   };
 
   const handleCloseModal = () => {
@@ -33,24 +30,22 @@ export const NewsletterSectionContent = () => {
   return (
     <NewsletterSectionContainer>
       <StarSvgWrapper>
-        <InfoSectionStarSvg width="122" height="122" />
+        <StarSvg width="122" height="122" />
       </StarSvgWrapper>
       <NewsletterContent>
         <NewsletterTitle>
           Never miss out our{' '}
           <NewsLetterTitleColor>latest news</NewsLetterTitleColor>
         </NewsletterTitle>
-        <form onSubmit={handleSubmit}>
-          <NewsletterInputContainer>
-            <NewsletterInput
-              type="email"
-              name="email"
-              placeholder="Email address"
-              required
-            />
-            <NewsletterButton type="submit">Sign Up</NewsletterButton>
-          </NewsletterInputContainer>
-        </form>
+        <NewsletterInputContainer onClick={() => handleSubmit()}>
+          <NewsletterInput
+            type="email"
+            name="email"
+            placeholder="Email address"
+            required
+          />
+          <NewsletterButton type="submit">Sign Up</NewsletterButton>
+        </NewsletterInputContainer>
         <NewsLetterContainer>
           <NewsletterDescription>
             By submitting this form, you will receive emails from Native Teams.

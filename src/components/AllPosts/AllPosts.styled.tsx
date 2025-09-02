@@ -21,12 +21,6 @@ export const AllPostCardContainer = styled.div`
   height: 399px;
   border-radius: 15px;
   border: 1px solid #e0e0e0;
-  cursor: pointer;
-
-  &:hover {
-    border: 1px solid #5152fb;
-    border-radius: 15px;
-  }
 `;
 
 export const AllPostImage = styled(Image)`
@@ -65,6 +59,7 @@ export const AllPostReadMore = styled.button`
   text-align: left;
   padding: 0;
   margin-top: auto;
+  width: 30%;
 `;
 
 export const PaginationContainer = styled.div`

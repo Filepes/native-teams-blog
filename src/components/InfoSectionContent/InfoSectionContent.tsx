@@ -14,8 +14,8 @@ import {
 import {
   InfoSectionBodySvg,
   InfoSectionHeadSvg,
-  InfoSectionStarSvg,
 } from '@/ui/icons/InfoSectionSvgs';
+import { StarSvg } from '@/ui/icons/StarSvg';
 
 interface InfoSectionContentProps {
   backgroundColor?: string;
@@ -39,7 +39,7 @@ export const InfoSectionContent = ({
         </HeadSvgWrapper>
       </LeftSideWrapper>
       <StarSvgWrapper>
-        <InfoSectionStarSvg color={svgColor} />
+        <StarSvg color={svgColor} />
       </StarSvgWrapper>
       <InfoContent>
         <InfoTitle $textColor={textColor}>Explore Native Teams today</InfoTitle>
