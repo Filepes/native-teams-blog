@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useGetAllNews } from '@/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { fetchNews } from '@/store/newsSlice';
 import { News } from '@/app/types/news';
 import { ResultsHeader, ResultsWrapper, ResultsSection } from './page.styled';
 import { Container } from '../page.styled';
@@ -10,8 +11,15 @@ import { NewsCard } from '@/components/NewsCard';
 
 export default function BlogPage() {
   const searchParams = useSearchParams();
-  const { news, loading, error } = useGetAllNews();
+  const dispatch = useAppDispatch();
+  const { news, loading, error } = useAppSelector((state) => state.news);
   const [filteredNews, setFilteredNews] = useState<News[]>([]);
+
+  useEffect(() => {
+    if (news.length === 0) {
+      dispatch(fetchNews());
+    }
+  }, [dispatch, news.length]);
 
   useEffect(() => {
     const query = searchParams.get('search') || '';

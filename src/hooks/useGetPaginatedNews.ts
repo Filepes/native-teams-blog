@@ -16,6 +16,7 @@ interface UseGetPaginatedNewsReturn {
   goToPage: (page: number) => void;
 }
 
+// not used anymore, leaving it just as a reference to the previous implementation
 export const useGetPaginatedNews = (
   pageSize: number = 10,
 ): UseGetPaginatedNewsReturn => {

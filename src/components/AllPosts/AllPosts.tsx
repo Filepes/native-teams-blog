@@ -1,6 +1,8 @@
 'use client';
 
-import { useGetPaginatedNews } from '@/hooks';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { fetchPaginatedNews, setCurrentPage } from '@/store/newsSlice';
 import {
   AllPostsContainer,
   AllPostsGrid,
@@ -13,20 +15,40 @@ import { AllPostCard } from './AllPostCard';
 import ReactPaginate from 'react-paginate';
 
 export const AllPosts = () => {
+  const dispatch = useAppDispatch();
   const {
-    news,
-    loading,
-    error,
+    paginatedNews,
+    paginatedNewsLoading,
+    paginatedNewsError,
     currentPage,
     totalPages,
-    hasNextPage,
-    hasPreviousPage,
-    goToNextPage,
-    goToPreviousPage,
-    goToPage,
-  } = useGetPaginatedNews(9);
+  } = useAppSelector((state) => state.news);
 
-  if (loading) {
+  const pageSize = 9;
+  const hasNextPage = currentPage < totalPages;
+  const hasPreviousPage = currentPage > 1;
+
+  useEffect(() => {
+    dispatch(fetchPaginatedNews({ page: currentPage, pageSize }));
+  }, [dispatch, currentPage]);
+
+  const goToNextPage = () => {
+    if (hasNextPage) {
+      dispatch(setCurrentPage(currentPage + 1));
+    }
+  };
+
+  const goToPreviousPage = () => {
+    if (hasPreviousPage) {
+      dispatch(setCurrentPage(currentPage - 1));
+    }
+  };
+
+  const goToPage = (page: number) => {
+    dispatch(setCurrentPage(page));
+  };
+
+  if (paginatedNewsLoading) {
     return (
       <AllPostsContainer>
         <div>Loading..</div>
@@ -34,10 +56,10 @@ export const AllPosts = () => {
     );
   }
 
-  if (error) {
+  if (paginatedNewsError) {
     return (
       <AllPostsContainer>
-        <div>Error {error}</div>
+        <div>Error {paginatedNewsError}</div>
       </AllPostsContainer>
     );
   }
@@ -45,7 +67,7 @@ export const AllPosts = () => {
   return (
     <AllPostsContainer>
       <AllPostsGrid>
-        {news.map((article) => (
+        {paginatedNews.map((article) => (
           <AllPostCard key={article.title} news={article} />
         ))}
       </AllPostsGrid>

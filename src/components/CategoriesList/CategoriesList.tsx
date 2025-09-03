@@ -1,22 +1,24 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { useGetAllNews } from '@/hooks';
-import {
-  CategoryItem,
-  ResultsHeader,
-  ResultsWrapper,
-} from './CategoriesList.styled';
+import { useEffect, useMemo } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { setSelectedCategory } from '@/store/newsSlice';
+import { CategoryItem } from './CategoriesList.styled';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 export const CategoriesList = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { news, selectedCategory } = useAppSelector((state) => state.news);
+
   const categoryParam = searchParams.get('category') || '';
-  const { news, loading } = useGetAllNews();
-  const [selectedCategory, setSelectedCategory] = useState<string>(
-    categoryParam ? categoryParam : 'News',
-  );
+
+  useEffect(() => {
+    if (categoryParam) {
+      dispatch(setSelectedCategory(categoryParam));
+    }
+  }, [dispatch, categoryParam]);
 
   const categories = useMemo(() => {
     if (!news.length) {
@@ -27,21 +29,15 @@ export const CategoriesList = () => {
   }, [news]);
 
   const handleChangeCategory = (category: string) => {
-    setSelectedCategory(category);
+    dispatch(setSelectedCategory(category));
     if (category === 'News') {
-      router.push(`/`);
+      router.replace(`/`, { scroll: false });
     } else {
-      router.push(`/?category=${encodeURIComponent(category.trim())}`);
+      router.replace(`/?category=${encodeURIComponent(category.trim())}`, {
+        scroll: false,
+      });
     }
   };
-
-  if (loading) {
-    return (
-      <ResultsHeader>
-        <ResultsWrapper>Loading..</ResultsWrapper>
-      </ResultsHeader>
-    );
-  }
 
   return (
     <>

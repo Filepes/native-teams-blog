@@ -8,7 +8,7 @@ interface UseGetAllNewsReturn {
   error: string | null;
   getAllNews: () => Promise<void>;
 }
-
+// not used anymore, leaving it just as a reference to the previous implementation
 export const useGetAllNews = (): UseGetAllNewsReturn => {
   const [news, setNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);

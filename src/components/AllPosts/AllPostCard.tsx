@@ -1,6 +1,7 @@
 'use client';
 
 import { News } from '@/app/types/news';
+import { useRouter } from 'next/navigation';
 import {
   AllPostCardContainer,
   AllPostImage,
@@ -8,14 +9,20 @@ import {
   AllPostTitle,
   AllPostReadMore,
 } from './AllPosts.styled';
+import { useAppDispatch } from '@/store/hooks';
+import { setSelectedArticle } from '@/store/newsSlice';
 
 interface AllPostCardProps {
   news: News;
 }
 
 export const AllPostCard = ({ news }: AllPostCardProps) => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
   const handleReadMore = () => {
-    console.log('readmore');
+    dispatch(setSelectedArticle(news));
+    router.push(`/post/${encodeURIComponent(news.title)}?postUrl=${encodeURIComponent(news.url)}`);
   };
 
   return (

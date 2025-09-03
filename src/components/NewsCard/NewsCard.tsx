@@ -1,6 +1,7 @@
 'use client';
 
 import { News } from '@/app/types/news';
+import { useRouter } from 'next/navigation';
 import {
   PostCard,
   PostImageWrapper,
@@ -10,19 +11,20 @@ import {
   PostDescription,
   ReadMoreButton,
 } from './NewsCard.styled';
+import { useAppDispatch } from '@/store/hooks';
+import { setSelectedArticle } from '@/store/newsSlice';
 
 interface NewsCardProps {
   news: News;
-  onClick?: () => void;
 }
 
-export const NewsCard = ({ news, onClick }: NewsCardProps) => {
+export const NewsCard = ({ news }: NewsCardProps) => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
   const handleReadMore = () => {
-    if (onClick) {
-      onClick();
-    } else {
-      console.log('readmore');
-    }
+    dispatch(setSelectedArticle(news));
+    router.push(`/post/${encodeURIComponent(news.title)}?postUrl=${news.url}`);
   };
 
   return (
