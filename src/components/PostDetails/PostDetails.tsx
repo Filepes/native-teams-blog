@@ -21,6 +21,7 @@ import { fetchArticleContent, fetchNews } from '@/store/newsSlice';
 import { AuthorSection } from '@/components/AuthorSection';
 import { InfoSectionContent } from '@/components/InfoSectionContent/InfoSectionContent';
 import { LoadingSpinner } from '../LoadingSpinner';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 interface PostDetailsProps {
   title: string;
@@ -70,8 +71,15 @@ export const PostDetails = ({ title }: PostDetailsProps) => {
 
   const readTime = calculateReadTime(selectedArticle?.content || '');
   const formattedDate = formatDate(currentPost.publishedAt);
+
+  const breadcrumbItems = [
+    { href: '/', label: 'News' },
+    { label: currentPost.title, isLast: true },
+  ];
+
   return (
     <PostDetailsContainer>
+      <Breadcrumbs crumbs={breadcrumbItems} />
       <PostContentSection>
         <PostHeaderContainer>
           <PostTitle>{currentPost.title}</PostTitle>
