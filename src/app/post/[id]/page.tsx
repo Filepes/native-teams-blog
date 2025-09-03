@@ -5,11 +5,11 @@ const PostDetailsLazy = React.lazy(() =>
     default: module.PostDetails,
   })),
 );
-export default async function PostDetailsPage({
-  params,
-}: {
+interface PageProps {
   params: { id: string };
-}) {
+}
+
+export default async function PostDetailsPage({ params }: PageProps) {
   const { id } = await params;
   try {
     return (
