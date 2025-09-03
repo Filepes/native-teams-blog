@@ -14,6 +14,15 @@ export const AllPostsGrid = styled.div`
   justify-content: center;
   gap: 18px;
   width: 100%;
+  min-height: 1230px;
+`;
+
+export const LoadingGridContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 1230px;
 `;
 
 export const AllPostCardContainer = styled.div`

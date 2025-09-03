@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useSearchParams } from 'next/navigation';
 import { fetchPaginatedNews, setCurrentPage } from '@/store/newsSlice';
 import {
   AllPostsContainer,
   AllPostsGrid,
+  LoadingGridContainer,
   PaginationContainer,
   StyledReactPaginate,
   PreviousButton,
@@ -13,9 +15,16 @@ import {
 } from './AllPosts.styled';
 import { AllPostCard } from './AllPostCard';
 import ReactPaginate from 'react-paginate';
+import { LoadingSpinner } from '../LoadingSpinner';
+import { useRouter } from 'next/navigation';
+
+const pageSize = 9;
 
 export const AllPosts = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const gridRef = useRef<HTMLDivElement>(null);
   const {
     paginatedNews,
     paginatedNewsLoading,
@@ -24,35 +33,70 @@ export const AllPosts = () => {
     totalPages,
   } = useAppSelector((state) => state.news);
 
-  const pageSize = 9;
   const hasNextPage = currentPage < totalPages;
   const hasPreviousPage = currentPage > 1;
 
+  const scrollToGrid = () => {
+    if (gridRef.current) {
+      gridRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
+  const updateURL = (newPage: number) => {
+    const currentCategory = searchParams.get('category');
+    const params = new URLSearchParams();
+
+    if (currentCategory) {
+      params.set('category', currentCategory);
+    }
+
+    if (newPage > 1) {
+      params.set('page', newPage.toString());
+    }
+
+    const paramString = params.toString();
+    const newURL = paramString ? `/?${paramString}` : '/';
+
+    router.replace(newURL, { scroll: false });
+  };
+
   useEffect(() => {
-    dispatch(fetchPaginatedNews({ page: currentPage, pageSize }));
-  }, [dispatch, currentPage]);
+    const goToPage = Number(searchParams.get('page')) || currentPage;
+    dispatch(fetchPaginatedNews({ page: goToPage, pageSize }));
+  }, [dispatch, currentPage, searchParams]);
 
   const goToNextPage = () => {
     if (hasNextPage) {
-      dispatch(setCurrentPage(currentPage + 1));
+      const newPage = currentPage + 1;
+      dispatch(setCurrentPage(newPage));
+      updateURL(newPage);
+      scrollToGrid();
     }
   };
 
   const goToPreviousPage = () => {
     if (hasPreviousPage) {
-      dispatch(setCurrentPage(currentPage - 1));
+      const newPage = currentPage - 1;
+      dispatch(setCurrentPage(newPage));
+      updateURL(newPage);
+      scrollToGrid();
     }
   };
 
   const goToPage = (page: number) => {
     dispatch(setCurrentPage(page));
+    updateURL(page);
+    scrollToGrid();
   };
 
   if (paginatedNewsLoading) {
     return (
-      <AllPostsContainer>
-        <div>Loading..</div>
-      </AllPostsContainer>
+      <LoadingGridContainer>
+        <LoadingSpinner size={100} />
+      </LoadingGridContainer>
     );
   }
 
@@ -65,7 +109,7 @@ export const AllPosts = () => {
   }
 
   return (
-    <AllPostsContainer>
+    <AllPostsContainer ref={gridRef}>
       <AllPostsGrid>
         {paginatedNews.map((article) => (
           <AllPostCard key={article.title} news={article} />

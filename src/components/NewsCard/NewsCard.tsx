@@ -26,7 +26,7 @@ export const NewsCard = ({ news }: NewsCardProps) => {
     dispatch(setSelectedArticle(news));
     router.push(`/post/${encodeURIComponent(news.title)}?postUrl=${news.url}`);
   };
-
+  console.log(news);
   return (
     <PostCard key={news.title}>
       <PostImageWrapper>

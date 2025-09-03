@@ -30,13 +30,22 @@ export const CategoriesList = () => {
 
   const handleChangeCategory = (category: string) => {
     dispatch(setSelectedCategory(category));
-    if (category === 'News') {
-      router.replace(`/`, { scroll: false });
-    } else {
-      router.replace(`/?category=${encodeURIComponent(category.trim())}`, {
-        scroll: false,
-      });
+
+    const currentPage = searchParams.get('page');
+    const params = new URLSearchParams();
+
+    if (category !== 'News') {
+      params.set('category', encodeURIComponent(category.trim()));
     }
+
+    if (currentPage && currentPage !== '1') {
+      params.set('page', currentPage);
+    }
+
+    const paramString = params.toString();
+    const newURL = paramString ? `/?${paramString}` : '/';
+
+    router.replace(newURL, { scroll: false });
   };
 
   return (
@@ -44,7 +53,7 @@ export const CategoriesList = () => {
       {categories.map((category) => (
         <CategoryItem
           key={category}
-          className={selectedCategory === category ? 'active' : ''}
+          className={decodeURI(selectedCategory) === category ? 'active' : ''}
           onClick={() => handleChangeCategory(category)}
         >
           {category}

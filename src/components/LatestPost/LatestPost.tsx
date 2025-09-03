@@ -8,13 +8,12 @@ import { useAppSelector } from '@/store/hooks';
 export const LatestPost = () => {
   const searchParams = useSearchParams();
   const { news } = useAppSelector((state) => state.news);
-
   const filteredNews = useMemo(() => {
     const newsCopy = [...news];
     const categoryParam = searchParams.get('category') || '';
 
     const filteredByCategory = categoryParam
-      ? newsCopy.filter((news) => news.source.name === categoryParam)
+      ? newsCopy.filter((news) => news.source.name === decodeURI(categoryParam))
       : newsCopy;
 
     const sortedByNew = filteredByCategory.sort(
@@ -24,6 +23,10 @@ export const LatestPost = () => {
 
     return sortedByNew[0] || null;
   }, [news, searchParams]);
+
+  if (!news.length) {
+    return;
+  }
 
   return (
     <>

@@ -1,7 +1,9 @@
 'use client';
 import { SearchBar } from '@/components/SearchBar';
+import { Hero } from '@/components/HeroSection';
 import {
   Container,
+  HeroSection,
   SearchSection,
   CategorySection,
   LatestPostSection,
@@ -17,6 +19,7 @@ import { NewsletterSectionContent } from '@/components/NewsletterSectionContent'
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useEffect } from 'react';
 import { fetchNews } from '@/store/newsSlice';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
 
 export default function Home() {
   const { loading, error } = useAppSelector((state) => state.news);
@@ -26,13 +29,20 @@ export default function Home() {
   }, [dispatch]);
 
   if (loading) {
-    return <Container>Loading...</Container>;
+    return (
+      <Container>
+        <LoadingSpinner size={100} />
+      </Container>
+    );
   }
   if (error) {
     return <Container>Error: {error}</Container>;
   }
   return (
     <Container>
+      <HeroSection>
+        <Hero />
+      </HeroSection>
       <SearchSection>
         <SearchBar />
       </SearchSection>

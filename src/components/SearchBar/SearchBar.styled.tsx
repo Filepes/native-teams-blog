@@ -44,6 +44,8 @@ export const SearchButton = styled.button`
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  position: relative;
+  right: 80px;
 
   &:hover {
     background-color: #4041e8;

@@ -20,6 +20,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { fetchArticleContent, fetchNews } from '@/store/newsSlice';
 import { AuthorSection } from '@/components/AuthorSection';
 import { InfoSectionContent } from '@/components/InfoSectionContent/InfoSectionContent';
+import { LoadingSpinner } from '../LoadingSpinner';
 
 interface PostDetailsProps {
   title: string;
@@ -58,12 +59,17 @@ export const PostDetails = ({ title }: PostDetailsProps) => {
   }, [news, title]);
 
   if (!currentPost) {
-    return <LoadingMessage>Loading post...</LoadingMessage>;
+    return (
+      <PostDetailsContainer>
+        <PostContentSection>
+          <LoadingSpinner size={200} />
+        </PostContentSection>
+      </PostDetailsContainer>
+    );
   }
 
   const readTime = calculateReadTime(selectedArticle?.content || '');
   const formattedDate = formatDate(currentPost.publishedAt);
-  console.log(selectedArticle);
   return (
     <PostDetailsContainer>
       <PostContentSection>
