@@ -146,7 +146,7 @@ export const NewsletterButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   position: relative;
-  right: 80px;
+  right: 90px;
 
   &:hover {
     background-color: #4041e8;
