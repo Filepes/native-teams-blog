@@ -6,7 +6,7 @@ const PostDetailsLazy = React.lazy(() =>
   })),
 );
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function PostDetailsPage({ params }: PageProps) {
