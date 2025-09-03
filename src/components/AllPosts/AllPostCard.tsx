@@ -4,6 +4,7 @@ import { News } from '@/app/types/news';
 import { useRouter } from 'next/navigation';
 import {
   AllPostCardContainer,
+  AllPostImageContainer,
   AllPostImage,
   AllPostContent,
   AllPostTitle,
@@ -27,27 +28,30 @@ export const AllPostCard = ({ news }: AllPostCardProps) => {
 
   return (
     <AllPostCardContainer>
-      {news.urlToImage ? (
-        <AllPostImage
-          src={news.urlToImage}
-          alt={news.title}
-          width={387}
-          height={221}
-        />
-      ) : (
-        <div
-          style={{
-            width: '387px',
-            height: '221px',
-            backgroundColor: '#f0f0f0',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          No Image
-        </div>
-      )}
+      <AllPostImageContainer>
+        {news.urlToImage ? (
+          <AllPostImage
+            src={news.urlToImage}
+            alt={news.title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 387px"
+          />
+        ) : (
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              backgroundColor: '#f0f0f0',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#999',
+            }}
+          >
+            No Image Available
+          </div>
+        )}
+      </AllPostImageContainer>
       <AllPostContent>
         <AllPostTitle>{news.title}</AllPostTitle>
         <AllPostReadMore onClick={handleReadMore}>

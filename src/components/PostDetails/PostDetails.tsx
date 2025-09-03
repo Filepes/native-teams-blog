@@ -7,6 +7,7 @@ import {
   PostHeaderContainer,
   PostTitle,
   PostDate,
+  PostImageContainer,
   PostImage,
   PostContentWrapper,
   PostContent,
@@ -89,13 +90,15 @@ export const PostDetails = ({ title }: PostDetailsProps) => {
         </PostHeaderContainer>
 
         {currentPost.urlToImage && (
-          <PostImage
-            src={currentPost.urlToImage}
-            alt={currentPost.title}
-            width={1200}
-            height={615}
-            priority
-          />
+          <PostImageContainer>
+            <PostImage
+              src={currentPost.urlToImage}
+              alt={currentPost.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
+              priority
+            />
+          </PostImageContainer>
         )}
       </PostContentSection>
 

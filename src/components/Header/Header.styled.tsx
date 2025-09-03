@@ -7,10 +7,22 @@ export const HeaderContainer = styled.header`
   gap: 8px;
   top: 0;
   z-index: 100;
+  
+  @media (max-width: 768px) {
+    padding: 20px 20px;
+    height: auto;
+    min-height: 70px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 16px 16px;
+    min-height: 60px;
+  }
 `;
 
 export const HeaderContent = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -19,21 +31,38 @@ export const HeaderContent = styled.div`
 
 export const LogoSection = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   width: 158px;
   height: 29px;
   cursor: pointer;
+  
+  @media (max-width: 768px) {
+    width: 120px;
+    height: 22px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 100px;
+    height: 18px;
+  }
 `;
 
 export const Navigation = styled.nav`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   flex: 1;
   justify-content: center;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const NavLinks = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   width: 276px;
   height: 19px;
@@ -66,5 +95,17 @@ export const HeaderButton = styled.button`
   cursor: pointer;
   &:hover {
     background-color: #4041e8;
+  }
+  
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 36px;
+    font-size: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 80px;
+    height: 32px;
+    font-size: 11px;
   }
 `;

@@ -33,11 +33,11 @@ export const NewsCard = ({ news }: NewsCardProps) => {
           <PostImage
             src={news.urlToImage}
             alt={news.title}
-            width={470}
-            height={400}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 470px"
           />
         ) : (
-          'placeholder'
+          'No image available'
         )}
       </PostImageWrapper>
       <PostContent>

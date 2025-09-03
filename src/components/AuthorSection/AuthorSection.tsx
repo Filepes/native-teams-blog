@@ -2,6 +2,7 @@
 
 import {
   AuthorSectionWrapper,
+  AuthorImageContainer,
   AuthorImage,
   AuthorName,
   AuthorDescription,
@@ -22,16 +23,31 @@ export const AuthorSection = ({
 }: AuthorSectionProps) => {
   return (
     <AuthorSectionWrapper>
-      {authorImage ? (
-        <AuthorImage
-          src={authorImage}
-          alt={authorName}
-          width={120}
-          height={120}
-        />
-      ) : (
-        <p>No image</p>
-      )}
+      <AuthorImageContainer>
+        {authorImage ? (
+          <AuthorImage
+            src={authorImage}
+            alt={authorName}
+            fill
+            sizes="120px"
+          />
+        ) : (
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              backgroundColor: '#f0f0f0',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#999',
+              fontSize: '12px',
+            }}
+          >
+            No Image
+          </div>
+        )}
+      </AuthorImageContainer>
       <AuthorDescriptionWrapper>
         <AuthorName>{authorName}</AuthorName>
         <AuthorType>AUTHOR</AuthorType>

@@ -5,9 +5,21 @@ export const InfoSectionContainer = styled.div<{ $backgroundColor?: string }>`
   justify-content: center;
   align-items: center;
   width: 1943px;
-  height: 456px;
+  max-width: 1943px;
+  min-height: 456px;
   position: relative;
   background-color: ${(props) => props.$backgroundColor || '#ebf3ff'};
+  padding: 60px 20px;
+
+  @media (max-width: 768px) {
+    min-height: 350px;
+    padding: 40px 16px;
+  }
+
+  @media (max-width: 480px) {
+    min-height: 280px;
+    padding: 30px 12px;
+  }
 `;
 
 export const LeftSideWrapper = styled.div`
@@ -18,6 +30,10 @@ export const LeftSideWrapper = styled.div`
   top: 0;
   opacity: 0.1;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const BodySvgWrapper = styled.div`
@@ -25,6 +41,10 @@ export const BodySvgWrapper = styled.div`
   bottom: 0;
   left: 145px;
   z-index: 2;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const HeadSvgWrapper = styled.div`
@@ -33,6 +53,10 @@ export const HeadSvgWrapper = styled.div`
   right: 0;
   left: 150px;
   z-index: 2;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const StarSvgWrapper = styled.div`
@@ -40,20 +64,33 @@ export const StarSvgWrapper = styled.div`
   right: 410px;
   top: 57px;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const InfoContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 771px;
-  height: 201px;
+  width: 100%;
+  max-width: 771px;
+  min-height: 201px;
   gap: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   z-index: 2;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    gap: 16px;
+    padding: 0 20px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 12px;
+    padding: 0 16px;
+  }
 `;
 
 export const InfoTitle = styled.h2<{ $textColor?: string }>`
@@ -64,6 +101,15 @@ export const InfoTitle = styled.h2<{ $textColor?: string }>`
   text-align: center;
   color: ${(props) => props.$textColor || '#333333'};
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+    line-height: 110%;
+  }
 `;
 
 export const InfoDescription = styled.p<{ $textColor?: string }>`
@@ -74,6 +120,16 @@ export const InfoDescription = styled.p<{ $textColor?: string }>`
   text-align: center;
   color: ${(props) => props.$textColor || '#666666'};
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    width: 40%;
+    font-size: 14px;
+    line-height: 140%;
+  }
 `;
 
 export const InfoButton = styled.button`
@@ -91,5 +147,19 @@ export const InfoButton = styled.button`
 
   &:hover {
     background-color: #4041e8;
+  }
+
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 44px;
+    padding: 12px 36px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    width: 140px;
+    height: 40px;
+    padding: 10px 30px;
+    font-size: 13px;
   }
 `;

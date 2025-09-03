@@ -16,6 +16,7 @@ export const CategoryItem = styled.button`
   line-height: 1.3;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 
   &:hover {
     background-color: #f5f5f5;
@@ -26,5 +27,15 @@ export const CategoryItem = styled.button`
     background-color: #5152fb;
     color: #ffffff;
     border-color: #5152fb;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 10px 16px;
+    font-size: 13px;
   }
 `;

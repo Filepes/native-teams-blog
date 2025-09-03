@@ -27,6 +27,20 @@ export const SearchSection = styled.div`
   margin-top: 205px;
   margin-left: 52px;
   margin-bottom: 150px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 100px;
+    margin-left: 0px;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 100px;
+    margin-left: 0px;
+  }
 `;
 
 export const CategorySection = styled.div`
@@ -38,6 +52,20 @@ export const CategorySection = styled.div`
   margin-bottom: 60px;
   padding: 0 120px;
   gap: 9px;
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 20px;
+    margin-bottom: 40px;
+    scroll-behavior: smooth;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 12px;
+    gap: 8px;
+  }
 `;
 
 export const LatestPostSection = styled.section`
@@ -52,8 +80,17 @@ export const AllPostsSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1197px;
+  width: 100%;
+  max-width: 1197px;
   padding: 40px 0;
+
+  @media (max-width: 768px) {
+    padding: 30px 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px 0;
+  }
 `;
 
 export const InfoSection = styled.section`
